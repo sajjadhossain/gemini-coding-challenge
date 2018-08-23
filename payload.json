@@ -1,0 +1,11 @@
+{
+  "client_order_id": "20150102-4738721",
+  "symbol": "btcusd",
+  "amount": "34.12",
+  "price": "622.13",
+  "side": "buy",
+  "type": "exchange limit",
+  "options": ["maker-or-cancel"],
+  "request": "/v1/order/new",
+  "nonce": 1000000000
+}
