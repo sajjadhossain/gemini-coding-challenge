@@ -2,16 +2,16 @@
 ## problem
 The new order API endpoint is described [here](https://docs.gemini.com/rest-api/#new-order). How will you test it?
 
-* Please code up functional test cases in the language of your choice or pseudocode. 
-* Include both positive and negative cases. 
-* Be able to quantify the number of distinct tests run. 
-* Do not invoke any other API endpoints (e.g., order status). 
+* Please code up functional test cases in the language of your choice or pseudocode.
+* Include both positive and negative cases.
+* Be able to quantify the number of distinct tests run.
+* Do not invoke any other API endpoints (e.g., order status).
 * Clearly articulate your assumptions.
 
 ### sandbox
 * **URL:** https://api.sandbox.gemini.com
-* **Key:** 0Ad2raecQBpUJs8difrv 
-* **Secret:** 2TZbDuGS2ZTLyDPWHJ49DPsbWXx7 
+* **Key:** 0Ad2raecQBpUJs8difrv
+* **Secret:** 2TZbDuGS2ZTLyDPWHJ49DPsbWXx7
 
 ## solution
 Using [postman](https://www.getpostman.com/), I was able to get a request through to the endpoint with the below steps. However, we wont be able to use the same headers to generate another `200` response. In order to make another successful request, we'd need to regenerate a few pieces of information. I generated my payload and signature, with the following steps:
@@ -32,18 +32,21 @@ Using [postman](https://www.getpostman.com/), I was able to get a request throug
     }
     ```
     * `nonce` needs to be noted and incremented as requests are made
+
 2. After creating the payload.json, I used a shell script to convert my JSON in to base64:
-    
+
     ```bash
     openssl base64 -in $1 -out $2
     ```
+
 3. Then I used another shell script to create my encrypted signature:
-    
+
     ```bash
     echo -n $1 | openssl sha384 -hmac $2
     ```
+
 4. Finally this gave me my full header:
-    
+
     ```bash
     POST /v1/order/new HTTP/1.1
     Host: api.sandbox.gemini.com
@@ -56,7 +59,7 @@ Using [postman](https://www.getpostman.com/), I was able to get a request throug
     Postman-Token: 78402821-bc4e-f3f5-b7d8-f2b82f16c180
     ```
 5. After sending my request, I got a response like:
-    
+
     ```json
     {
         "order_id": "103413857",
@@ -81,7 +84,7 @@ Using [postman](https://www.getpostman.com/), I was able to get a request throug
         "price": "622.13",
         "original_amount": "34.12"
     }
-```
+    ```
 
 ### automating this request
 
@@ -94,40 +97,45 @@ As a developer,
 I want to generate a unique payload,
 So that I can convert it
 ```
+
 See [generatePayload.md](./generatePayload.md)
 
 #### 2. Convert payload to base64
 
 ```gherkin
-As a developer, 
+As a developer,
 I want to convert my unique payload,
 So that I can pass it in the header of my request
 ```
+
 See [convertPayload.md](./convertPayload.md)
 
 #### 3. Create a signature
 
 ```gherkin
-As a developer, 
+As a developer,
 I want to encrypt my unique payload with my secret as my hash,
 So that I can pass it in the header of my request as my signature
 ```
+
 See [createSignature.md](./createSignature.md)
 
-#### 4. Generate header 
+#### 4. Generate header
 
 ```gherkin
-As a developer, 
+As a developer,
 I want to use my payload, my encrypted signature,
 So that I create a unique and authorized header
 ```
+
 See [generateHeader.md](./generateHeader.md)
 
 #### 5. Make the request
 
 ```gherkin
-As a developer, 
+As a developer,
 I want to use my authorized header,
 So that I can make a request
 ```
+
 See [makeRequest.md](./makeRequest.md)
