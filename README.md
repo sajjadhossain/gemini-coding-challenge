@@ -84,6 +84,7 @@ Using [postman](https://www.getpostman.com/), I was able to get a request throug
 ```
 
 ### automating this request
+
 The stories below represents the desired functionality we want to test. There a total of 5 stories, one for each step identified above. So as an SDET, I need to tool together a bunch of scripts or function that let me achieve my test.
 
 #### 1. Generate a unique payload
