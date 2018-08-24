@@ -10,8 +10,8 @@ The new order API endpoint is described [here](https://docs.gemini.com/rest-api/
 
 ### sandbox
 * **URL:** https://api.sandbox.gemini.com
-* **Key:** 0Ad2raecQBpUJs8difrv
-* **Secret:** 2TZbDuGS2ZTLyDPWHJ49DPsbWXx7
+* **Key:** $key
+* **Secret:** $secret
 
 ## solution
 Using [postman](https://www.getpostman.com/), I was able to get a request through to the endpoint with the below steps. However, we wont be able to use the same headers to generate another `200` response. In order to make another successful request, we'd need to regenerate a few pieces of information. I generated my payload and signature, with the following steps:
@@ -108,7 +108,7 @@ I want to convert my unique payload,
 So that I can pass it in the header of my request
 ```
 
-See [convertPayload.md](./convertPayload.md)
+See [convertPayload.md](./wiki/convertPayload.md)
 
 #### 3. Create a signature
 
@@ -118,7 +118,7 @@ I want to encrypt my unique payload with my secret as my hash,
 So that I can pass it in the header of my request as my signature
 ```
 
-See [createSignature.md](./createSignature.md)
+See [createSignature.md](./wiki/createSignature.md)
 
 #### 4. Generate header
 
@@ -128,7 +128,7 @@ I want to use my payload, my encrypted signature,
 So that I create a unique and authorized header
 ```
 
-See [generateHeader.md](./generateHeader.md)
+See [generateHeader.md](./wiki/generateHeader.md)
 
 #### 5. Make the request
 
@@ -138,4 +138,4 @@ I want to use my authorized header,
 So that I can make a request
 ```
 
-See [makeRequest.md](./makeRequest.md)
+See [makeRequest.md](./wiki/makeRequest.md)
