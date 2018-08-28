@@ -107,7 +107,9 @@ module.exports = {
 module.exports = 3000000000
 ```
 
-I've created a couple of scripts to help our goal of automating this as a test. You can skip steps 1-5 with `npm run new:files`
+I've created a couple of scripts to help our goal of automating this as a test. You can skip steps 2-5 with `npm run new:files`
+
+Run `npm install`, then:
 
 1. Create the folder structure: `npm run init`
 2. Generate a new payload: `npm run new:payload`
