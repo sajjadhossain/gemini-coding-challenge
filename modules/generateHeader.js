@@ -1,4 +1,6 @@
 const fs = require('fs')
+const writeFile = require('./writeFile')
+const readFileNoBreak = require('./readFileNoBreak')
 const convertsDir = './converted_payloads'
 const signaturesDir = './signatures'
 const headersDir = './headers'
@@ -9,11 +11,6 @@ const secret = require('../secret')
 const secretKey = secret.key
 const apiKey = secret.api
 let newHeader
-const writeHeader = (id, header) => {
-  fs.writeFile(headersDir + '/header-' + id + '.json', header, (err) => {
-    if (err) throw err
-  })
-}
 const generateHeader = () => {
   signatures.forEach((signature) => {
     let id = signature.match(/\d+/g)
@@ -23,11 +20,11 @@ const generateHeader = () => {
       'Content-Length': 0,
       'Content-Type': 'WebKitFormBoundary7MA4YWxkTrZu0gW',
       'X-GEMINI-APIKEY': apiKey,
-      'X-GEMINI-PAYLOAD': fs.readFileSync(convertsDir + '/converted-payload-' + id, 'utf8').replace(/\n/g, ''),
-      'X-GEMINI-SIGNATURE': fs.readFileSync(signaturesDir + '/' + signature, 'utf8').replace(/\n/g, '')
+      'X-GEMINI-PAYLOAD': readFileNoBreak(convertsDir + '/converted-payload-' + id),
+      'X-GEMINI-SIGNATURE': readFileNoBreak(signaturesDir + '/' + signature)
     }
 
-    writeHeader(id, JSON.stringify(header, null, 2))
+    writeFile(headersDir + '/header-' + id + '.json', JSON.stringify(header, null, 2))
   })
 }
 

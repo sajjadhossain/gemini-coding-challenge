@@ -1,7 +1,7 @@
-
 const fs = require('fs')
 const https = require('https')
 const { exec } = require('child_process')
+const writeFile = require('./writeFile')
 const headersDir = './headers'
 const requestsDir = './requests_log'
 let newRequest
@@ -35,10 +35,7 @@ const makeRequest = (url, path) => {
 
     resp.on('end', () => {
       response.data = JSON.parse(data)
-
-      fs.writeFile(requestsDir + '/request-' + id, JSON.stringify(response, null, 2), (err) => {
-        if (err) throw err
-      })
+      writeFile(requestsDir + '/request-' + id + '.json', JSON.stringify(response, null, 2))
     })
 
   }).on("error", (err) => {

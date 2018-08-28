@@ -5,7 +5,6 @@ const sign = require('./modules/generateSignature')
 const header = require('./modules/generateHeader')
 const makeFiles = require('./modules/makeFiles')
 const makeRequest = require('./modules/makeRequest')
-
 const sandboxUrl = 'api.sandbox.gemini.com'
 const newOrder = '/v1/order/new'
 

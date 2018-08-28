@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "mocha ./test/specs/** --timeout 5000",
     "init": "mkdir ./payloads && mkdir ./converted_payloads && mkdir ./signatures && mkdir ./headers && mkdir ./requests_log",
     "delete:all": "rm -rf ./payloads/* && rm -rf ./converted_payloads/* && rm -rf ./signatures/* && rm -rf ./headers/* && rm -rf ./requests_log/*",
     "new:payload": "node index.js --payload",
@@ -34,5 +34,10 @@
     "url": "https://github.com/sajjadhossain/gemini-coding-challenge/issues"
   },
   "homepage": "https://github.com/sajjadhossain/gemini-coding-challenge#readme",
-  "dependencies": {}
+  "dependencies": {
+    "shelljs": "^0.8.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2"
+  }
 }

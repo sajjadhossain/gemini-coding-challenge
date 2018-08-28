@@ -14,6 +14,9 @@ The new order API endpoint is described [here](https://docs.gemini.com/rest-api/
 * **Secret:** $secret
 
 ## solution
+See [solution.md](./wiki/solution.md).
+
+#### how I tested this feature
 Using [postman](https://www.getpostman.com/), I was able to get a request through to the endpoint with the below steps. However, we wont be able to use the same headers to generate another `200` response. In order to make another successful request, we'd need to regenerate a few pieces of information. I generated my payload and signature, with the following steps:
 
 1. Create a payload.json
@@ -58,6 +61,7 @@ Using [postman](https://www.getpostman.com/), I was able to get a request throug
     Cache-Control: no-cache
     Postman-Token: 78402821-bc4e-f3f5-b7d8-f2b82f16c180
     ```
+    
 5. After sending my request, I got a response like:
 
     ```json
@@ -86,11 +90,23 @@ Using [postman](https://www.getpostman.com/), I was able to get a request throug
     }
     ```
 
-### automating this request
+#### running our automation commands
 
-The stories below represents the desired functionality we want to test. There a total of 5 stories, one for each step identified above. So as an SDET, I need to tool together a bunch of scripts or function that let me achieve my test.
+To use these scripts, you need a `secret.json` and you need to increment the `start.js` at the root of the project.
 
-#### running the commands in order
+##### secret.js
+```js
+module.exports = {
+  key: '$secret',
+  api: '$apikey'
+}
+```
+##### start.js
+
+```js
+module.exports = 3000000000
+```
+
 
 I've created a couple of scripts to help our goal of automating this as a test. You can skip steps 1-5 with `npm run new:files`
 
@@ -103,52 +119,6 @@ I've created a couple of scripts to help our goal of automating this as a test. 
 
 Again, you only have to run `npm run new:files` and `npm run new:request`.
 
-##### 1. Generate a unique payload
+#### testing our commands
 
-```gherkin
-As a developer,
-I want to generate a unique payload,
-So that I can convert it
-```
-
-See [generatePayload.md](./wiki/generatePayload.md)
-
-##### 2. Convert payload to base64
-
-```gherkin
-As a developer,
-I want to convert my unique payload,
-So that I can pass it in the header of my request
-```
-
-See [convertPayload.md](./wiki/convertPayload.md)
-
-##### 3. Create a signature
-
-```gherkin
-As a developer,
-I want to encrypt my unique payload with my secret as my hash,
-So that I can pass it in the header of my request as my signature
-```
-
-See [createSignature.md](./wiki/createSignature.md)
-
-##### 4. Generate header
-
-```gherkin
-As a developer,
-I want to use my payload, my encrypted signature,
-So that I create a unique and authorized header
-```
-
-See [generateHeader.md](./wiki/generateHeader.md)
-
-##### 5. Make the request
-
-```gherkin
-As a developer,
-I want to use my authorized header,
-So that I can make a request
-```
-
-See [makeRequest.md](./wiki/makeRequest.md)
+`npm run test`

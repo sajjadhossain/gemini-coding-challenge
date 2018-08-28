@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { exec } = require('child_process')
+const writeFile = require('./writeFile')
 const convertsDir = './converted_payloads'
 const signaturesDir = './signatures'
 const converts = fs.readdirSync(convertsDir)
@@ -8,9 +8,7 @@ const secret = require('../secret')
 const secretKey = secret.key
 let newSignature
 const writeSignature = (id, payload) => {
-  fs.writeFile(signaturesDir + '/signature-' + id, payload, (err) => {
-    if (err) throw err
-  })
+  writeFile(signaturesDir + '/signature-' + id, payload)
 }
 const toSign = () => {
   let convertedPayloads = []
@@ -42,7 +40,7 @@ const sign = () => {
 
   toDo.forEach((signature) => {
     const hmac = require('crypto').createHmac('sha384', secret.key).update(signature.payload)
-    
+
     writeSignature(signature.id, hmac.digest('hex'))
   })
 }
