@@ -1,8 +1,6 @@
 # convert a payload
 
-After the payload is created, this module converts the payload, with the same nonceID to base64, in `converted_payloads`. See the code, [here](../modules/convertPayload.js)
-
-Run this alone with `npm run new:convert`. The outcome should look something like:
+After the payload is created, this module converts the payload, with the same nonceID to base64, in `converted_payloads`. See the code, [here](../modules/convertPayload.js). Run this alone with `npm run new:convert`. The outcome should look something like:
 
 ```
 ewogICJjbGllbnRfb3JkZXJfaWQiOiAiMjAxNTAxMDItNDczODcyMSIsCiAgInN5

@@ -1,8 +1,6 @@
 # generate a payload
 
-See the code, [here](../modules/generatePayload.js). This module will create a payload, with the nonce as an id, in `payloads`.
-
-Run this module alone with `npm run new:payload`. The outcome should look something like:
+See the code, [here](../modules/generatePayload.js). This module will create a payload, with the nonce as an id, in `payloads`. Run this module alone with `npm run new:payload`. The outcome should look something like:
 
 ```json
 {
