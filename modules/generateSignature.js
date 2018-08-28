@@ -41,12 +41,9 @@ const sign = () => {
   const toDo = toSign()
 
   toDo.forEach((signature) => {
-    exec('sh ./scripts/hmac.sh ' + signature.payload + ' ' + secretKey, (error, stdout, stderr) => {
-      writeSignature(signature.id, stdout)
-      if (error !== null) {
-        console.log('ERROR: ' + error)
-      }
-    })
+    const hmac = require('crypto').createHmac('sha384', secret.key).update(signature.payload)
+    
+    writeSignature(signature.id, hmac.digest('hex'))
   })
 }
 

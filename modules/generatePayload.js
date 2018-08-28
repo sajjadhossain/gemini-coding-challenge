@@ -1,8 +1,9 @@
 const fs = require('fs')
+const startingNonce = require('../start')
 const payloadsDir = './payloads'
 const payloads = fs.readdirSync(payloadsDir)
 let newPayload
-const start = 1000000001
+const start = startingNonce
 const nonces = () => {
   let payloadsCreated = []
   payloads.forEach((payload) => {
@@ -33,7 +34,7 @@ const payload = {
   nonce: newNonce()
 }
 const writePayload = () => {
-  fs.writeFile(payloadsDir + '/payload-' + payload.nonce + '.json', JSON.stringify(payload), (err) => {
+  fs.writeFile(payloadsDir + '/payload-' + payload.nonce + '.json', JSON.stringify(payload, null, 2), (err) => {
     if (err) throw err
   })
 }

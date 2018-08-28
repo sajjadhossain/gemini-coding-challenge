@@ -90,7 +90,20 @@ Using [postman](https://www.getpostman.com/), I was able to get a request throug
 
 The stories below represents the desired functionality we want to test. There a total of 5 stories, one for each step identified above. So as an SDET, I need to tool together a bunch of scripts or function that let me achieve my test.
 
-#### 1. Generate a unique payload
+#### running the commands in order
+
+I've created a couple of scripts to help our goal of automating this as a test. You can skip steps 1-5 with `npm run new:files`
+
+1. Create the folder structure: `npm run init`
+2. Generate a new payload: `npm run new:payload`
+3. Convert a new payload: `npm run new:convert`
+4. Create a signature with key and payload: `npm run new:signature`
+5. Generate a header: `npm run new:header`
+6. Lastly, make a request with `npm run new:request`
+
+Again, you only have to run `npm run new:files` and `npm run new:request`.
+
+##### 1. Generate a unique payload
 
 ```gherkin
 As a developer,
@@ -98,9 +111,9 @@ I want to generate a unique payload,
 So that I can convert it
 ```
 
-See [generatePayload.md](./generatePayload.md)
+See [generatePayload.md](./wiki/generatePayload.md)
 
-#### 2. Convert payload to base64
+##### 2. Convert payload to base64
 
 ```gherkin
 As a developer,
@@ -110,7 +123,7 @@ So that I can pass it in the header of my request
 
 See [convertPayload.md](./wiki/convertPayload.md)
 
-#### 3. Create a signature
+##### 3. Create a signature
 
 ```gherkin
 As a developer,
@@ -120,7 +133,7 @@ So that I can pass it in the header of my request as my signature
 
 See [createSignature.md](./wiki/createSignature.md)
 
-#### 4. Generate header
+##### 4. Generate header
 
 ```gherkin
 As a developer,
@@ -130,7 +143,7 @@ So that I create a unique and authorized header
 
 See [generateHeader.md](./wiki/generateHeader.md)
 
-#### 5. Make the request
+##### 5. Make the request
 
 ```gherkin
 As a developer,

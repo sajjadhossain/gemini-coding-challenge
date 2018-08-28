@@ -1,0 +1,38 @@
+{
+  "name": "gemini-coding-excercise",
+  "version": "1.0.0",
+  "description": "Positive and negative functional test cases in cypress against the newOrder API",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "init": "mkdir ./payloads && mkdir ./converted_payloads && mkdir ./signatures && mkdir ./headers && mkdir ./requests_log",
+    "delete:all": "rm -rf ./payloads/* && rm -rf ./converted_payloads/* && rm -rf ./signatures/* && rm -rf ./headers/* && rm -rf ./requests_log/*",
+    "new:payload": "node index.js --payload",
+    "new:convert": "node index.js --convert",
+    "new:signature": "node index.js --sign",
+    "new:header": "node index.js --header",
+    "new:files": "node index.js --files",
+    "new:request": "node index.js --request"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sajjadhossain/gemini-coding-challenge.git"
+  },
+  "keywords": [
+    "mocha",
+    "chai",
+    "gemini",
+    "nodejs",
+    "node"
+  ],
+  "author": "sajjad hossain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sajjadhossain/gemini-coding-challenge/issues"
+  },
+  "homepage": "https://github.com/sajjadhossain/gemini-coding-challenge#readme",
+  "dependencies": {}
+}
